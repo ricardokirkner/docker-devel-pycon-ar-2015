@@ -21,7 +21,21 @@ full-clean: clean
 manage:
 	$(MANAGE) $(ARGS)
 
+migrate:
+	$(MANAGE) syncdb --noinput
+	$(MANAGE) migrate --noinput
+
 run: ARGS=0.0.0.0:8000
 run:
 	$(MANAGE) runserver $(ARGS)
 
+docker-build:
+	docker build -t demo-app/ricardokirkner .
+
+docker-run:
+	docker run -it demo-app/ricardokirkner
+
+start:
+	python manage.py syncdb --noinput
+	python manage.py migrate --noinput
+	python manage.py runserver 0.0.0.0:8000
