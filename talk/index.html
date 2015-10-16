@@ -1,0 +1,172 @@
+<!-- vim: set ts=2 sts=2 sw=2 noexpandtab: -->
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Prácticas modernas para el desarrollo de aplicaciones web | PyCon Argentina 2015</title>
+		<link rel="stylesheet" href="css/reveal.css" />
+		<link rel="stylesheet" href="css/theme/night.css" id="theme" />
+		<!-- add support for earlier versions of IE -->
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section>
+					<h2>Prácticas modernas para el desarrollo de aplicaciones web</h2>
+					<p>Ricardo Kirkner</p>
+					<p>PyCon Argentina 2015</p>
+				</section>
+
+				<section>
+					<h2>Intro</h2>
+					<ul>
+						<li>El problema</li>
+						<li>Una solución posible</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>El problema</h3>
+					<p>Una aplicación web moderna está tiene una arquitectura compleja</p>
+					<ul>
+						<li class="fragment" data-fragment-index="2">Web Server (apache, nginx)</li>
+						<li class="fragment" data-fragment-index="1">WSGI Server (gunicorn, uwsgi)</li>
+						<li>Application (django, flask)</li>
+						<li class="fragment" data-fragment-index="0">Database (postgresql, mysql)</li>
+					</ul>
+					<ul>
+						<li class="fragment">Cache Server (memcached, redis)</li>
+						<li class="fragment">Asynchronous Tasks (celery)</li>
+						<li class="fragment">Email Server (postfix, exim)</li>
+					</ul>
+					<ul>
+						<li class="fragment">Error Reporting (sentry)</li>
+						<li class="fragment">Logging (logstash, elasticsearch, kibana)</li>
+						<li class="fragment">Metrics (graphite, statsd)</li>
+						<li class="fragment">Monitoring (nagios, zabbix)</li>
+					</ul>
+				</section>
+
+				<section>
+					<section>
+						<ul class="fragment" data-fragment-index="1" style="display: block; border: 1px #eee solid;">
+							<li>Web Server</li>
+						</ul>
+
+						<ul style="display: block; border: 1px #eee solid;">
+							<li>WSGI Server</li>
+							<li>Application</li>
+						</ul>
+
+						<ul class="fragment" data-fragment-index="0" style="display: block; border: 1px #eee solid;">
+							<li>Database</li>
+						</ul>
+					</section>
+
+					<section>
+						<ul style="display: block; border: 1px #eee solid;">
+							<li>Web Server</li>
+						</ul>
+
+						<ul style="display: block; border: 1px #eee solid;">
+							<li>WSGI Server</li>
+							<li>Application</li>
+						</ul>
+
+						<ul style="display: block; border: 1px #eee solid;">
+							<li>Database</li>
+						</ul>
+
+						<ul class="fragment" style="display: block; border: 1px #eee solid;">
+							<li>Cache Server</li>
+						</ul>
+
+						<ul class="fragment" style="display: block; border: 1px #eee solid;">
+							<li>Asynchronous Tasks</li>
+						</ul>
+
+						<ul class="fragment" style="display: block; border: 1px #eee solid;">
+							<li>Email Server</li>
+						</ul>
+					</section>
+
+					<section>
+						<ul style="display: block; border: 1px #eee solid;">
+							<li>Web Server</li>
+						</ul>
+
+						<ul style="display: block; border: 1px #eee solid;">
+							<li>WSGI Server</li>
+							<li>Application</li>
+						</ul>
+
+						<ul style="display: block; border: 1px #eee solid;">
+							<li>Database</li>
+						</ul>
+
+						<ul style="display: block; border: 1px #eee solid;">
+							<li>Cache Server</li>
+						</ul>
+
+						<ul style="display: block; border: 1px #eee solid;">
+							<li>Asynchronous Tasks</li>
+						</ul>
+
+						<ul style="display: block; border: 1px #eee solid;">
+							<li>Email Server</li>
+						</ul>
+
+						<div class="fragment">
+						<ul style="display: block; border: 1px #eee solid;">
+							<li>Error Reporting</li>
+						</ul>
+
+						<ul style="display: block; border: 1px #eee solid;">
+							<li>Logging</li>
+						</ul>
+
+						<ul style="display: block; border: 1px #eee solid;">
+							<li>Metrics</li>
+						</ul>
+
+						<ul style="display: block; border: 1px #eee solid;">
+							<li>Monitoring</li>
+						</ul>
+						</div>
+					</section>
+				</section>
+
+				<section>
+					<h3>Highly scalable architecture</h3>
+					<h2 class="fragment">at least 10 machines!!</h2>
+				</section>
+
+				<section>
+					<h2>The solution</h2>
+					<p>How can we run all these separate components in a single laptop during development?</p>
+				</section>
+
+				<section>
+					<h2>Enter Docker</h2>
+				</section>
+
+				<section>
+					<h3>docker-compose</h3>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script>
+			Reveal.initialize({
+			});
+		</script>
+	</body>
+</html>
