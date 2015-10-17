@@ -12,3 +12,9 @@ db:
     image: postgres
     expose:
         - "5432"
+web:
+    build: web
+    ports:
+        - "80:80"
+    links:
+        - app
