@@ -2,7 +2,7 @@ DOCKER_COMPOSE = $(ENV)/bin/docker-compose
 ENV = env
 PIP = $(ENV)/bin/pip
 
-SERVICE ?= 
+ARGS ?= 
 
 
 help:
@@ -18,10 +18,10 @@ $(ENV): $(ENV)/bin/activate
 build: .build
 
 start: build
-	$(DOCKER_COMPOSE) up -d $(SERVICE)
+	$(DOCKER_COMPOSE) up $(ARGS)
 
 stop:
-	$(DOCKER_COMPOSE) stop $(SERVICE)
+	$(DOCKER_COMPOSE) stop $(ARGS)
 
 clean: clean-docker clean-env
 	@rm -rf .build
@@ -34,7 +34,7 @@ $(ENV)/bin/activate: build-requirements.txt
 	@touch $(ENV)/bin/activate
 
 .build: $(ENV) docker-compose.yml
-	@$(DOCKER_COMPOSE) build $(SERVICE)
+	@$(DOCKER_COMPOSE) build $(ARGS)
 	@touch .build
 
 clean-docker:
