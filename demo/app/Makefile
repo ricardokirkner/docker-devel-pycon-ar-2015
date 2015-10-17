@@ -1,4 +1,5 @@
 ENV = env
+GUNICORN = $(ENV)/bin/gunicorn
 MANAGE = $(PYTHON) manage.py
 PIP = $(ENV)/bin/pip
 PYTHON = $(ENV)/bin/python
@@ -24,9 +25,10 @@ manage:
 migrate:
 	$(MANAGE) migrate --noinput
 
-run: ARGS=0.0.0.0:8000
+run: ARGS=-b 0.0.0.0:8000
 run:
-	$(MANAGE) runserver $(ARGS)
+	$(MANAGE) collectstatic --noinput
+	$(GUNICORN) $(ARGS) project.wsgi:application
 
 docker-build:
 	docker build -t demo-app/ricardokirkner .
@@ -36,4 +38,5 @@ docker-run:
 
 start:
 	python manage.py migrate --noinput
-	python manage.py runserver 0.0.0.0:8000
+	python manage.py collectstatic --noinput
+	gunicorn -b 0.0.0.0:8000 project.wsgi:application
