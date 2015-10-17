@@ -1,0 +1,3 @@
+# need to use an older version of docker-compose due to
+# an older version of docker available in the system
+docker-compose==1.2.0
