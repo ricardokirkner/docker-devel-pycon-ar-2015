@@ -4,3 +4,11 @@ app:
         - app:/usr/src/app
     ports:
         - "8000:8000"
+    links:
+        - db
+    environment:
+        DATABASE_URL: postgres://postgres@db/postgres
+db:
+    image: postgres
+    expose:
+        - "5432"
