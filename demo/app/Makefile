@@ -22,7 +22,6 @@ manage:
 	$(MANAGE) $(ARGS)
 
 migrate:
-	$(MANAGE) syncdb --noinput
 	$(MANAGE) migrate --noinput
 
 run: ARGS=0.0.0.0:8000
@@ -36,6 +35,5 @@ docker-run:
 	docker run -it demo-app/ricardokirkner
 
 start:
-	python manage.py syncdb --noinput
 	python manage.py migrate --noinput
 	python manage.py runserver 0.0.0.0:8000
