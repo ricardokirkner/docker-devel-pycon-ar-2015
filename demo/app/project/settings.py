@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dj_static',
+    'hits',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -100,3 +101,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
+
+#########
+# CACHE #
+#########
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    },
+    'hits': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}

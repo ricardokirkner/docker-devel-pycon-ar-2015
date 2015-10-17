@@ -16,6 +16,9 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from hits.views import hitme
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', hitme, name='hitme')
 ]
