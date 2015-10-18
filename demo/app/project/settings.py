@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'dj_static',
     'hits',
+    'lottery',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -118,4 +119,56 @@ CACHES = {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }
     }
+}
+
+##########
+# CELERY #
+##########
+
+BROKER_URL = env('BROKER_URL', 'amqp://guest:guest@localhost/')
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+###########
+# LOGGING #
+###########
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file_debug': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'logs/debug.log',
+        },
+        'file_info': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'logs/info.log',
+        },
+        'file_lottery': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'logs/lottery.log',
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['file_debug'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'lottery': {
+            'handlers': ['file_lottery'],
+            'level': 'INFO',
+            'propagate': False,
+        }
+    },
+    'root': {
+        'level': 'DEBUG',
+        'handlers': ['file_debug'],
+    },
+    'version': 1,
 }

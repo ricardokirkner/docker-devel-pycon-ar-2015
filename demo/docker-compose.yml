@@ -2,14 +2,17 @@ app:
     build: app
     volumes:
         - app:/usr/src/app
+        - data/logs/app:/usr/src/app/logs
     ports:
         - "8000:8000"
     links:
         - db
         - redis
+        - amqp
     environment:
         DATABASE_URL: postgres://postgres@db/postgres
         REDIS_URL: redis://redis/1
+        BROKER_URL: amqp://guest:guest@amqp/
 db:
     image: postgres
     expose:
@@ -24,4 +27,8 @@ redis:
     image: redis
     expose:
         - "6379"
+amqp:
+    image: rabbitmq
+    expose:
+        - "5672"
 

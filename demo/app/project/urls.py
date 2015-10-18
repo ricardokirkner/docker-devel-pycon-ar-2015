@@ -17,8 +17,10 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 from hits.views import hitme
+from lottery.views import lottery
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', hitme, name='hitme')
+    url(r'^hits/$', hitme, name='hitme'),
+    url(r'^lottery/$', lottery, name='lottery'),
 ]

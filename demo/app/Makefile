@@ -39,4 +39,4 @@ docker-run:
 start:
 	python manage.py migrate --noinput
 	python manage.py collectstatic --noinput
-	gunicorn -b 0.0.0.0:8000 project.wsgi:application
+	honcho start
