@@ -28,7 +28,13 @@ redis:
     expose:
         - "6379"
 amqp:
-    image: rabbitmq
+    image: rabbitmq:management
     expose:
         - "5672"
-
+        - "15672"
+flower:
+    image: nicholsn/docker-flower
+    links:
+        - amqp:mq
+    ports:
+        - "5555:5555"
