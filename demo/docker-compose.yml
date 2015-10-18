@@ -15,20 +15,28 @@ app:
         BROKER_URL: amqp://guest:guest@amqp/
 db:
     image: postgres
+    volumes:
+        - data/logs/db:/var/log/postgresql
     expose:
         - "5432"
 web:
     build: web
+    volumes:
+        - data/logs/web:/var/log/nginx
     ports:
         - "80:80"
     links:
         - app
 redis:
     image: redis
+    volumes:
+        - data/logs/redis:/var/log/redis
     expose:
         - "6379"
 amqp:
     image: rabbitmq:management
+    volumes:
+        - data/logs/amqp:/var/log/rabbitmq
     expose:
         - "5672"
         - "15672"
