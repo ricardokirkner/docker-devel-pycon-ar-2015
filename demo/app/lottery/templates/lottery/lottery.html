@@ -13,20 +13,22 @@
     <form action="" method="post">{% csrf_token %}
         <input type="submit" value="Pick random number" />
     </form>
+    <button><a href="">Refresh log</a></button>
 
-    <form action="" method="get">
-        <input type="submit" value="Refresh" />
-    </form>
+    {% if log %}
+    <pre id="log" style="border: 1px solid #ccc; width: 800px; height: 400px; overflow: scroll;">
+    {{ log }}
+    </pre>
+    {% endif %}
 
     {% if task_id %}
     <p>Triggered task {{ task_id }} to pick a new random number.</p>
     {% endif %}
 
-    {% if log %}
-    <pre style="display: block; width: 100%; height: 400px;">
-    {{ log }}
-    </pre>
-    {% endif %}
+    <script>
+        var log = document.getElementById('log');
+        log.scrollTop = log.scrollHeight;
+    </script>
 
 </body>
 </html>
