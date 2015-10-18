@@ -7,3 +7,4 @@ django-redis
 django-getenv
 celery
 honcho
+django-statsd

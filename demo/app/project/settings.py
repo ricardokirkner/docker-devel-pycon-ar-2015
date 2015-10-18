@@ -42,9 +42,11 @@ INSTALLED_APPS = (
     'dj_static',
     'hits',
     'lottery',
+    'django_statsd',
 )
 
 MIDDLEWARE_CLASSES = (
+    'django_statsd.middleware.StatsdMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -53,6 +55,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'django_statsd.middleware.StatsdMiddlewareTimer',
 )
 
 ROOT_URLCONF = 'project.urls'
@@ -172,3 +175,9 @@ LOGGING = {
     },
     'version': 1,
 }
+
+##########
+# STATSD #
+##########
+
+STATSD_HOST = env('STATSD_HOST', 'localhost')
