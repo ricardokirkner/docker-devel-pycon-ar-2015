@@ -10,3 +10,7 @@ def hitme(request):
         cache.set('hits', 1)
         hits = 1
     return render(request, 'hits/hitme.html', {'hits': hits})
+
+
+def index(request):
+    return render(request, 'hits/index.html')
