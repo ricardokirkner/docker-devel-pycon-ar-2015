@@ -1,8 +1,8 @@
 app:
     build: app
     volumes:
-        - app:/usr/src/app
-        - data/logs/app:/usr/src/app/logs
+        - "./app:/usr/src/app"
+        - "./data/logs/app:/usr/src/app/logs"
     ports:
         - "8000:8000"
     links:
@@ -18,13 +18,13 @@ app:
 db:
     image: postgres
     volumes:
-        - data/logs/db:/var/log/postgresql
+        - "./data/logs/db:/var/log/postgresql"
     expose:
         - "5432"
 web:
     build: web
     volumes:
-        - data/logs/web:/var/log/nginx
+        - "./data/logs/web:/var/log/nginx"
     ports:
         - "80:80"
     links:
@@ -32,13 +32,13 @@ web:
 redis:
     image: redis
     volumes:
-        - data/logs/redis:/var/log/redis
+        - "./data/logs/redis:/var/log/redis"
     expose:
         - "6379"
 amqp:
     image: rabbitmq:management
     volumes:
-        - data/logs/amqp:/var/log/rabbitmq
+        - "./data/logs/amqp:/var/log/rabbitmq"
     expose:
         - "5672"
         - "15672"
